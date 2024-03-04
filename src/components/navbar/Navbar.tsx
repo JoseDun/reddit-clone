@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SearchInput from "../navbar/SearchInput";
-import RightContent from "./RightContent";
+import RightContent from "./RightContent/RightContent";
 
 /* interface NavbarProps {
   
