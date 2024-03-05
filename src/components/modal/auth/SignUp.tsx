@@ -1,46 +1,46 @@
-import { authModalState } from "@/src/atoms/authModalAtom";
-import { Button, Flex, Input, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "@/src/firebase/clientApp";
-import { FIREBASE_ERRORS } from "@/src/firebase/errors";
+import { authModalState } from '@/src/atoms/authModalAtom'
+import { Button, Flex, Input, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { useSetRecoilState } from 'recoil'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { auth } from '@/src/firebase/clientApp'
+import { FIREBASE_ERRORS } from '@/src/firebase/errors'
 
-type LoginProps = {};
+type LoginProps = {}
 
 const SignUp: React.FC<LoginProps> = () => {
-  const setAuthModalState = useSetRecoilState(authModalState);
+  const setAuthModalState = useSetRecoilState(authModalState)
   const [signUpForm, setSignUpForm] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [error, setError] = useState("");
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
+  const [error, setError] = useState('')
 
   const [createUserWithEmailAndPassword, user, loading, useError] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth)
 
   //* firebase logic
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (error) setError("");
+    if (error) setError('')
 
     if (signUpForm.confirmPassword !== signUpForm.password) {
-      setError("Password error");
-      return;
+      setError('Password error')
+      return
     }
 
-    createUserWithEmailAndPassword(signUpForm.email, signUpForm.password);
-  };
+    createUserWithEmailAndPassword(signUpForm.email, signUpForm.password)
+  }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //* update form state
-    setSignUpForm((prev) => ({
+    setSignUpForm(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+      [e.target.name]: e.target.value
+    }))
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -52,13 +52,13 @@ const SignUp: React.FC<LoginProps> = () => {
         onChange={onChange}
         required
         fontSize="10pt"
-        _placeholder={{ color: "gray.500" }}
-        _hover={{ bg: "white", border: "1px solid", borderColor: "blue.500" }}
+        _placeholder={{ color: 'gray.500' }}
+        _hover={{ bg: 'white', border: '1px solid', borderColor: 'blue.500' }}
         _focus={{
-          outline: "none",
-          bg: "white",
-          border: "1px solid",
-          borderColor: "blue.500",
+          outline: 'none',
+          bg: 'white',
+          border: '1px solid',
+          borderColor: 'blue.500'
         }}
         bg="gray.50"
       />
@@ -71,13 +71,13 @@ const SignUp: React.FC<LoginProps> = () => {
         onChange={onChange}
         required
         fontSize="10pt"
-        _placeholder={{ color: "gray.500" }}
-        _hover={{ bg: "white", border: "1px solid", borderColor: "blue.500" }}
+        _placeholder={{ color: 'gray.500' }}
+        _hover={{ bg: 'white', border: '1px solid', borderColor: 'blue.500' }}
         _focus={{
-          outline: "none",
-          bg: "white",
-          border: "1px solid",
-          borderColor: "blue.500",
+          outline: 'none',
+          bg: 'white',
+          border: '1px solid',
+          borderColor: 'blue.500'
         }}
         bg="gray.50"
       />
@@ -90,13 +90,13 @@ const SignUp: React.FC<LoginProps> = () => {
         onChange={onChange}
         required
         fontSize="10pt"
-        _placeholder={{ color: "gray.500" }}
-        _hover={{ bg: "white", border: "1px solid", borderColor: "blue.500" }}
+        _placeholder={{ color: 'gray.500' }}
+        _hover={{ bg: 'white', border: '1px solid', borderColor: 'blue.500' }}
         _focus={{
-          outline: "none",
-          bg: "white",
-          border: "1px solid",
-          borderColor: "blue.500",
+          outline: 'none',
+          bg: 'white',
+          border: '1px solid',
+          borderColor: 'blue.500'
         }}
         bg="gray.50"
       />
@@ -124,14 +124,14 @@ const SignUp: React.FC<LoginProps> = () => {
           fontWeight={700}
           cursor="pointer"
           onClick={() =>
-            setAuthModalState((prev) => ({ ...prev, view: "login" }))
+            setAuthModalState(prev => ({ ...prev, view: 'login' }))
           }
         >
           Log In
         </Text>
       </Flex>
     </form>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

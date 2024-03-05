@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { Button, Flex, Icon, Input, Text } from "@chakra-ui/react";
-import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
-import { useSetRecoilState } from "recoil";
-import { authModalState } from "@/src/atoms/authModalAtom";
-import { auth } from "@/src/firebase/clientApp";
-import { BsDot, BsReddit } from "react-icons/bs";
-import { FIREBASE_ERRORS } from "@/src/firebase/errors";
+import React, { useState } from 'react'
+import { Button, Flex, Icon, Input, Text } from '@chakra-ui/react'
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth'
+import { useSetRecoilState } from 'recoil'
+import { authModalState } from '@/src/atoms/authModalAtom'
+import { auth } from '@/src/firebase/clientApp'
+import { BsDot, BsReddit } from 'react-icons/bs'
+import { FIREBASE_ERRORS } from '@/src/firebase/errors'
 
-type ResetPasswordProps = {};
+type ResetPasswordProps = {}
 
 const ResetPassword: React.FC<ResetPasswordProps> = () => {
-  const setAuthModalState = useSetRecoilState(authModalState);
-  const [email, setEmail] = useState("");
-  const [success, setSuccess] = useState(false);
+  const setAuthModalState = useSetRecoilState(authModalState)
+  const [email, setEmail] = useState('')
+  const [success, setSuccess] = useState(false)
   const [sendPasswordResetEmail, sending, error] =
-    useSendPasswordResetEmail(auth);
+    useSendPasswordResetEmail(auth)
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    await sendPasswordResetEmail(email);
-    setSuccess(true);
-  };
+    await sendPasswordResetEmail(email)
+    setSuccess(true)
+  }
 
   return (
     <Flex direction="column" alignItems="center" width="100%">
@@ -33,7 +33,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
         <Text mb={4} textAlign="center" color="red" fontSize="10pt">
           {error
             ? FIREBASE_ERRORS[error?.message as keyof typeof FIREBASE_ERRORS]
-            : "Check your email"}
+            : 'Check your email'}
         </Text>
       ) : (
         <>
@@ -41,26 +41,26 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
             Enter the email associated with your account and we will send you a
             reset link
           </Text>
-          <form onSubmit={onSubmit} style={{ width: "100%" }}>
+          <form onSubmit={onSubmit} style={{ width: '100%' }}>
             <Input
               required
               name="email"
               placeholder="email"
               type="email"
               mb={2}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={event => setEmail(event.target.value)}
               fontSize="10pt"
-              _placeholder={{ color: "gray.500" }}
+              _placeholder={{ color: 'gray.500' }}
               _hover={{
-                bg: "white",
-                border: "1px solid",
-                borderColor: "blue.500",
+                bg: 'white',
+                border: '1px solid',
+                borderColor: 'blue.500'
               }}
               _focus={{
-                outline: "none",
-                bg: "white",
-                border: "1px solid",
-                borderColor: "blue.500",
+                outline: 'none',
+                bg: 'white',
+                border: '1px solid',
+                borderColor: 'blue.500'
               }}
               bg="gray.50"
             />
@@ -89,9 +89,9 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
       >
         <Text
           onClick={() =>
-            setAuthModalState((prev) => ({
+            setAuthModalState(prev => ({
               ...prev,
-              view: "login",
+              view: 'login'
             }))
           }
         >
@@ -100,9 +100,9 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
         <Icon as={BsDot} />
         <Text
           onClick={() =>
-            setAuthModalState((prev) => ({
+            setAuthModalState(prev => ({
               ...prev,
-              view: "signup",
+              view: 'signup'
             }))
           }
         >
@@ -110,6 +110,6 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
         </Text>
       </Flex>
     </Flex>
-  );
-};
-export default ResetPassword;
+  )
+}
+export default ResetPassword

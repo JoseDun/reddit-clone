@@ -1,35 +1,35 @@
-import { authModalState } from "@/src/atoms/authModalAtom";
-import { auth } from "@/src/firebase/clientApp";
-import { FIREBASE_ERRORS } from "@/src/firebase/errors";
-import { Button, Flex, Input, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useSetRecoilState } from "recoil";
+import { authModalState } from '@/src/atoms/authModalAtom'
+import { auth } from '@/src/firebase/clientApp'
+import { FIREBASE_ERRORS } from '@/src/firebase/errors'
+import { Button, Flex, Input, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { useSetRecoilState } from 'recoil'
 
-type LoginProps = {};
+type LoginProps = {}
 
 const Login: React.FC<LoginProps> = () => {
-  const setAuthModalState = useSetRecoilState(authModalState);
+  const setAuthModalState = useSetRecoilState(authModalState)
 
   const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: ''
+  })
 
   const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+    useSignInWithEmailAndPassword(auth)
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    signInWithEmailAndPassword(loginForm.email, loginForm.password);
-  };
+    event.preventDefault()
+    signInWithEmailAndPassword(loginForm.email, loginForm.password)
+  }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginForm((prev) => ({
+    setLoginForm(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+      [e.target.name]: e.target.value
+    }))
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -41,13 +41,13 @@ const Login: React.FC<LoginProps> = () => {
         onChange={onChange}
         required
         fontSize="10pt"
-        _placeholder={{ color: "gray.500" }}
-        _hover={{ bg: "white", border: "1px solid", borderColor: "blue.500" }}
+        _placeholder={{ color: 'gray.500' }}
+        _hover={{ bg: 'white', border: '1px solid', borderColor: 'blue.500' }}
         _focus={{
-          outline: "none",
-          bg: "white",
-          border: "1px solid",
-          borderColor: "blue.500",
+          outline: 'none',
+          bg: 'white',
+          border: '1px solid',
+          borderColor: 'blue.500'
         }}
         bg="gray.50"
       />
@@ -59,13 +59,13 @@ const Login: React.FC<LoginProps> = () => {
         onChange={onChange}
         required
         fontSize="10pt"
-        _placeholder={{ color: "gray.500" }}
-        _hover={{ bg: "white", border: "1px solid", borderColor: "blue.500" }}
+        _placeholder={{ color: 'gray.500' }}
+        _hover={{ bg: 'white', border: '1px solid', borderColor: 'blue.500' }}
         _focus={{
-          outline: "none",
-          bg: "white",
-          border: "1px solid",
-          borderColor: "blue.500",
+          outline: 'none',
+          bg: 'white',
+          border: '1px solid',
+          borderColor: 'blue.500'
         }}
         bg="gray.50"
       />
@@ -93,7 +93,7 @@ const Login: React.FC<LoginProps> = () => {
           color="blue.500"
           cursor="pointer"
           onClick={() =>
-            setAuthModalState((prev) => ({ ...prev, view: "resetPassword" }))
+            setAuthModalState(prev => ({ ...prev, view: 'resetPassword' }))
           }
         >
           Reset
@@ -107,14 +107,14 @@ const Login: React.FC<LoginProps> = () => {
           fontWeight={700}
           cursor="pointer"
           onClick={() =>
-            setAuthModalState((prev) => ({ ...prev, view: "signup" }))
+            setAuthModalState(prev => ({ ...prev, view: 'signup' }))
           }
         >
           SIGN UP
         </Text>
       </Flex>
     </form>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

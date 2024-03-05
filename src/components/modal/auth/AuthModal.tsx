@@ -1,5 +1,5 @@
-import { authModalState } from "@/src/atoms/authModalAtom";
-import { auth } from "@/src/firebase/clientApp";
+import { authModalState } from '@/src/atoms/authModalAtom'
+import { auth } from '@/src/firebase/clientApp'
 import {
   Flex,
   Modal,
@@ -8,28 +8,28 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Text,
-} from "@chakra-ui/react";
-import React, { useCallback, useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useRecoilState } from "recoil";
-import AuthInput from "./AuthInput";
-import OauthButtons from "./OauthButtons";
-import ResetPassword from "./ResetPassword";
+  Text
+} from '@chakra-ui/react'
+import React, { useCallback, useEffect } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useRecoilState } from 'recoil'
+import AuthInput from './AuthInput'
+import OauthButtons from './OauthButtons'
+import ResetPassword from './ResetPassword'
 
 const AuthModal = () => {
-  const [modalState, setModalState] = useRecoilState(authModalState);
+  const [modalState, setModalState] = useRecoilState(authModalState)
 
   const handleClose = useCallback(() => {
-    setModalState((prev) => ({ ...prev, open: false }));
-  }, [setModalState]);
+    setModalState(prev => ({ ...prev, open: false }))
+  }, [setModalState])
 
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth)
 
   useEffect(() => {
-    if (user) handleClose();
-    console.log(user);
-  }, [user, handleClose]);
+    if (user) handleClose()
+    console.log(user)
+  }, [user, handleClose])
 
   return (
     <>
@@ -37,9 +37,9 @@ const AuthModal = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader textAlign="center">
-            {modalState.view === "login" && "Login"}
-            {modalState.view === "resetPassword" && "Reset Password"}
-            {modalState.view === "signup" && "Sign Up"}
+            {modalState.view === 'login' && 'Login'}
+            {modalState.view === 'resetPassword' && 'Reset Password'}
+            {modalState.view === 'signup' && 'Sign Up'}
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody
@@ -55,7 +55,7 @@ const AuthModal = () => {
               justifyContent="center"
               width="70%"
             >
-              {modalState.view === "login" || modalState.view === "signup" ? (
+              {modalState.view === 'login' || modalState.view === 'signup' ? (
                 <>
                   <OauthButtons />
                   <Text color="gray.500" fontWeight={700}>
@@ -71,6 +71,6 @@ const AuthModal = () => {
         </ModalContent>
       </Modal>
     </>
-  );
-};
-export default AuthModal;
+  )
+}
+export default AuthModal

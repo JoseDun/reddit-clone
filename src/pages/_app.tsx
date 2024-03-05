@@ -1,10 +1,10 @@
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app'
 
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from '@chakra-ui/react'
 
-import { theme } from "../chakra/theme";
-import Layout from "../components/layout/Layout";
-import { RecoilRoot } from "recoil";
+import { theme } from '../chakra/theme'
+import Layout from '../components/layout/Layout'
+import { RecoilRoot } from 'recoil'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,5 +15,5 @@ export default function App({ Component, pageProps }: AppProps) {
         </Layout>
       </ChakraProvider>
     </RecoilRoot>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { auth } from "@/src/firebase/clientApp";
-import { Button, Flex, Text } from "@chakra-ui/react";
-import Image from "next/image";
-import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { auth } from '@/src/firebase/clientApp'
+import { Button, Flex, Text } from '@chakra-ui/react'
+import Image from 'next/image'
+import React from 'react'
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 
 const OauthButtons: React.FC = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth)
 
   return (
     <Flex direction="column" width="100%" mb={4}>
@@ -31,7 +31,7 @@ const OauthButtons: React.FC = () => {
         </Text>
       )}
     </Flex>
-  );
-};
+  )
+}
 
-export default OauthButtons;
+export default OauthButtons
