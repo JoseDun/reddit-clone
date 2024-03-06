@@ -10,7 +10,7 @@ import {
   ModalOverlay,
   Text
 } from '@chakra-ui/react'
-import React, { useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useRecoilState } from 'recoil'
 import AuthInput from './AuthInput'
